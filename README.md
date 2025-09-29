@@ -1,6 +1,6 @@
 # RadiaCode Arduino Library
 
-![RadiaCode Banner](https://raw.githubusercontent.com/mkgeiger/RadiaCode/main/doc/images/banner.png)
+![RadiaCode](/doc/radiacode.jpg)
 
 [![Arduino](https://img.shields.io/badge/Arduino-Library-00979D.svg)](https://www.arduino.cc/)
 [![ESP32](https://img.shields.io/badge/ESP32-Compatible-red.svg)](https://www.espressif.com/en/products/socs/esp32)
@@ -184,3 +184,4 @@ Markus Geiger
 - [Report Issues](https://github.com/mkgeiger/RadiaCode/issues)
 
 The implementation of this RadiaCode library in C++ was inspired by the cdump Python RadiaCode library (https://github.com/cdump/radiacode). I wanted to adapt it for Arduino platforms, mainly for the ESP32 (which supports BLE). Because RadiaCode does not publish the API documentation the only chance to implement this library was by studying the cdump Python library and reverse engineering the bluetooth protocol. Therefore are still some open points to be clarified, to be defined and to be done. So don't see the library implementation status as 100% complete and fully functional. But the main functions and beyond that work fine. Please feel free to improve the library and report also bugs. The usage of this library is therefore at your own risk. I assume no liability whatsoever.
+
